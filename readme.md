@@ -9,3 +9,5 @@ If you want change salary for job change range/number here: config.lua **Salary1
 > PLEASE READ [REGUIREMENTS.MD](https://github.com/t0maskoYT/t_cooking/blob/main/requirements.md)
 
 [VIDEO PREVIEW](https://youtu.be/qBCYiN6TFFM)
+
+PS: This was my first script.
