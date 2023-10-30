@@ -20,8 +20,8 @@ Config.chefNpcHeading = 84.8583
 ----RAGNE OF PAY----
 --------------------
 
-Config.Pay1 = 20
-Config.Pay2 = 40
+Config.Salary1 = 20
+Config.Salary2 = 40
 
 Config.recipes = {
     [1] = { 
