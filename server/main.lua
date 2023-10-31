@@ -61,7 +61,7 @@ RegisterServerEvent("my_cooking:sellOrder")
 AddEventHandler("my_cooking:sellOrder", function(orderText)
     local xPlayer = ESX.GetPlayerFromId(source)
     local doneorder = xPlayer.getInventoryItem(orderText)
-    local pay = math.random(Config.Salary1, Config.Salary2)
+    local pay = math.random(Config.Pay1, Config.Pay2)
     if doneorder.count >= 1 then
         xPlayer.removeInventoryItem(orderText, 1)
         xPlayer.addMoney(pay)

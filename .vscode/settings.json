@@ -1,0 +1,9 @@
+{
+    "Lua.diagnostics.globals": [
+        "Citizen"
+    ],
+    "Lua.diagnostics.disable": [
+        "undefined-global",
+        "lowercase-global"
+    ]
+}

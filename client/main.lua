@@ -35,64 +35,65 @@ Citizen.CreateThread(function()
                     end
                 end
 
-                local markerDistance = #(playerCoords - vector3(Config.Marker.x, Config.Marker.y, Config.Marker.z))
-                    if markerDistance < 5.0 then
-                        if anti_e2 == true then
-                            DrawText3D(Config.Marker.x, Config.Marker.y, Config.Marker.z, "[E] Serve")
+                -- local markerDistance = #(playerCoords - vector3(Config.Marker.x, Config.Marker.y, Config.Marker.z))
+                --     if markerDistance < 5.0 then
+                --         if anti_e2 == true then
+                --             DrawText3D(Config.Marker.x, Config.Marker.y, Config.Marker.z, "[E] Serve")
                             
 
                         
-                        if anti_e == true then
+                --         if anti_e == true then
 
-                            if IsControlJustPressed(0, 38) then -- 38 it's key for E
-                                anti_e = false
-                                anti_e2 = false
-                                if not attachedStand then
-                                    if ESX.PlayerData.job and ESX.PlayerData.job.name == Config.Job then
+                --             if IsControlJustPressed(0, 38) then -- 38 it's key for E
+                --                 anti_e = false
+                --                 anti_e2 = false
+                --                 if not attachedStand then
+                --                     if ESX.PlayerData.job and ESX.PlayerData.job.name == Config.Job then
                                         
-                                        DrawTextAndMarkerIfClose()
-                                        SpawnPed()
+                --                         DrawTextAndMarkerIfClose()
+                --                         SpawnPed()
                                         
-                                        order = Config.Orders[math.random(#Config.Orders)].text
-                                        orderText = order
-                                        randomText = true
+                --                         order = Config.Orders[math.random(#Config.Orders)].text
+                --                         orderText = order
+                --                         randomText = true
                                         
                                         
-                                    else
-                                        ESX.ShowNotification("You don't have permission for this!")
-                                    end
-                                end
-                            end
+                --                     else
+                --                         ESX.ShowNotification("You don't have permission for this!")
+                --                     end
+                --                 end
+                --             end
                         
-                        end
-                        end
-                end
+                --         end
+                --         end
+                -- end
 
-                local cookDistance = #(playerCoords - vector3(Config.Cook.x, Config.Cook.y, Config.Cook.z))
+               -- local cookDistance = #(playerCoords - vector3(Config.Cook.x, Config.Cook.y, Config.Cook.z))
 
-                if cookDistance < 5.0 then
-                    DrawText3D(Config.Cook.x, Config.Cook.y, Config.Cook.z, "[E] Cook")
+                -- if cookDistance < 5.0 then
+                --     DrawText3D(Config.Cook.x, Config.Cook.y, Config.Cook.z, "[E] Cook")
 
-                    if IsControlJustPressed(0, 38) then
-                        if ESX.PlayerData.job and ESX.PlayerData.job.name == Config.Job then
-                            FoodMenu()
-                        else
-                            ESX.ShowNotification("You can't cook here!")
-                        end
-                    end
-                end              
+                --     if IsControlJustPressed(0, 38) then
+                --         if ESX.PlayerData.job and ESX.PlayerData.job.name == Config.Job then
+                --             FoodMenu()
+                --         else
+                --             ESX.ShowNotification("You can't cook here!")
+                --         end
+                --     end
+                -- end              
                 
-                local recepiesDistance = #(playerCoords - vector3(Config.chefNpc.x, Config.chefNpc.y, Config.chefNpc.z))
+                -- local recepiesDistance = #(playerCoords - vector3(Config.chefNpc.x, Config.chefNpc.y, Config.chefNpc.z))
 
-                if recepiesDistance < 5.0 then
-                    DrawText3D(Config.chefNpc.x, Config.chefNpc.y, Config.chefNpc.z, "[E] Recepies")
-                    if IsControlJustPressed(0, 38) then
-                        RecepiesMenu()
-                    end
-                end
+                -- if recepiesDistance < 5.0 then
+                --     DrawText3D(Config.chefNpc.x, Config.chefNpc.y, Config.chefNpc.z, "[E] Recepies")
+                --     if IsControlJustPressed(0, 38) then
+                --         RecepiesMenu()
+                --     end
+                -- end
 
     end
 end)
+
 
 Citizen.CreateThread(function()
     while true do
@@ -238,7 +239,7 @@ function StartCookingProcess(recipeId)
             ESX.ShowNotification("Food is already done. You can take it.")
             TriggerServerEvent('my_cooking:giveFood', recipeId)
         else
-            ESX.ShowNotification("You don't have enough ingredients for this dish.")
+            ESX.ShowNotification("You don't have enough ingredients for this this.")
         end
     end, recipeId)
 end
@@ -389,4 +390,67 @@ function DrawTextAndMarkerIfClose()
             end
     end)
 end
+------------------------
+-------OX TARGET--------
+------------------------
 
+AddEventHandler('start', function ()
+    DrawTextAndMarkerIfClose()
+    SpawnPed()
+end)
+
+AddEventHandler('cookstart', function()
+    FoodMenu()
+end)
+
+AddEventHandler('recepieso', function ()
+    RecepiesMenu()    
+end)
+
+
+exports.ox_target:addBoxZone({ 
+    coords = vector3(128.967041, -1054.101074, 22.944336),
+    size = vec3(2, 2, 2),
+    rotation = 45,
+    debug = drawZones,
+    options = {
+        {
+            name = 'job_start',
+            event = 'start',
+            icon = 'fa-solid fa-cube',
+            label = 'Start job',
+        }
+    }
+})
+
+
+
+exports.ox_target:addBoxZone({ 
+    coords = vector3(143.169235, -1056.553833, 22.944336),
+    size = vec3(2, 2, 2),
+    rotation = 45,
+    debug = drawZones,
+    options = {
+        {
+            name = 'Cooking',
+            event = 'cookstart',
+            icon = 'fa-solid fa-cube',
+            label = 'Cook',
+        }
+    }
+})
+
+exports.ox_target:addBoxZone({ 
+    coords = vector3(149.2682, -1055.1135, 22.9602),
+    size = vec3(2, 2, 2),
+    rotation = 45,
+    debug = drawZones,
+    options = {
+        {
+            name = 'Recepies',
+            event = 'recepieso',
+            icon = 'fa-solid fa-cube',
+            label = 'Show me Recepies',
+        }
+    }
+})
