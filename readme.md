@@ -11,3 +11,13 @@ If you want change salary for job change range/number here: config.lua **Salary1
 [VIDEO PREVIEW](https://youtu.be/qBCYiN6TFFM)
 
 PS: This was my first script.
+
+## UPDATE 1.0.1  (31.10.2023)
+
+**Add OX TARGET**
+
+If you want use **OX TARGET** and don’t use buttons like ‘E’, ‘G’ etc.
+
+Remove those lines: **from 38 to 92 in client/main.lua.**
+
+If you want change position of OX TARGET change cords here: **clinet/main.lua line 412, 429, 444**
